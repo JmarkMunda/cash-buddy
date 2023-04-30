@@ -1,13 +1,21 @@
-import React, { useState } from "react";
-import { Button, Container, Heading } from "native-base";
+import React from "react";
+import { Button, Center, Container, Heading } from "native-base";
+import { useAppDispatch } from "../redux";
+import { loginRequest } from "../redux/actions/auth";
 
-export default function LoginScreen() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+export const LoginScreen = () => {
+  const dispatch = useAppDispatch();
 
   return (
-    <Container>
-      <Heading>Welcome</Heading>
-      <Button onPress={() => setIsLoggedIn(true)}>Login</Button>
-    </Container>
+    <Center flex={1}>
+      <Container>
+        <Center>
+          <Heading>Welcome</Heading>
+          <Button minW={150} onPress={() => dispatch(loginRequest(true))}>
+            Login
+          </Button>
+        </Center>
+      </Container>
+    </Center>
   );
-}
+};

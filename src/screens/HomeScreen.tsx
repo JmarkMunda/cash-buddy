@@ -1,8 +1,9 @@
-import React from "react";
-import { Button, Container, Text, Heading, HStack } from "native-base";
+import { Button, Container, Heading, HStack } from "native-base";
 import Toast from "react-native-toast-message";
 import { useAppSelector, useAppDispatch } from "../redux";
 import { decrement, increment } from "../redux/reducers/counter";
+import { loginRequest } from "../redux/actions/auth";
+import { PrimaryButton } from "../components/Buttons";
 
 export default function HomeScreen() {
   const { value } = useAppSelector(({ counter }) => counter);
@@ -17,7 +18,10 @@ export default function HomeScreen() {
 
   return (
     <Container>
-      <Text>HomeScreen</Text>
+      {/* <Box>
+        <Text>HomeScreen</Text>
+      </Box> */}
+      <Button onPress={() => dispatch(loginRequest(false))}>Log out</Button>
       <Button onPress={handleToast}>Show toast</Button>
       <Heading>Counter: {value}</Heading>
       <HStack space={4}>
@@ -25,6 +29,7 @@ export default function HomeScreen() {
           -
         </Button>
         <Button onPress={() => dispatch(increment())}>+</Button>
+        {/* <PrimaryButton title="Sample" onPress={() => {}} /> */}
       </HStack>
     </Container>
   );
