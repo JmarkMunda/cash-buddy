@@ -3,9 +3,12 @@ import type { DrawerContentComponentProps } from "@react-navigation/drawer";
 import { useTheme } from "native-base";
 import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export const DrawerContents = (props: DrawerContentComponentProps) => {
   const { colors } = useTheme();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const drawerItems = [
     {
@@ -13,14 +16,14 @@ export const DrawerContents = (props: DrawerContentComponentProps) => {
       renderIcon: (props: { size: number; color: string }) => (
         <MaterialCommunityIcons name="archive-arrow-down-outline" {...props} />
       ),
-      handlePress: () => console.log("Incomes"),
+      handlePress: () => navigation.navigate("Incomes"),
     },
     {
       label: "Expenses " as const,
       renderIcon: (props: { size: number; color: string }) => (
         <MaterialCommunityIcons name="archive-arrow-up-outline" {...props} />
       ),
-      handlePress: () => console.log("expenses"),
+      handlePress: () => navigation.navigate("Expenses"),
     },
   ];
 

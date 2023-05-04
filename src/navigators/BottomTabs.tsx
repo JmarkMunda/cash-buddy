@@ -1,8 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ProfileScreen } from "../screens/ProfileScreen";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import SettingsScreen from "../screens/SettingsScreen";
 import HomeScreen from "../screens/HomeScreen";
+import { Icon, IconButton } from "native-base";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,11 +33,17 @@ export const BottomTabs = () => {
           key={screen.name}
           name={screen.name}
           component={screen.component}
-          options={{
+          options={({ navigation }) => ({
+            headerLeft: () => (
+              <IconButton
+                icon={<Icon as={MaterialIcons} name="menu" />}
+                onPress={() => navigation.toggleDrawer()}
+              />
+            ),
             tabBarIcon: ({ color, size }) => (
               <Ionicons name={screen.icon} color={color} size={size} />
             ),
-          }}
+          })}
         />
       ))}
     </Tab.Navigator>

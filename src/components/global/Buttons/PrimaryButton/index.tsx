@@ -8,7 +8,7 @@ interface PrimaryButtonProps extends IButtonProps {
 
 export const PrimaryButton = ({ title, onPress, ...otherProps }: PrimaryButtonProps) => {
   return (
-    <Button {...otherProps} onPress={onPress}>
+    <Button {...otherProps} onPress={onPress} borderRadius={8}>
       {title}
     </Button>
   );
