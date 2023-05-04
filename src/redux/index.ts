@@ -2,13 +2,15 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { TypedUseSelectorHook } from "react-redux/es/types";
 import counter from "./reducers/counter";
+import auth from "./reducers/auth";
 
 // ...
 const rootReducer = combineReducers({});
 
 const store = configureStore({
   reducer: {
-    counter: counter,
+    auth,
+    counter,
   },
 });
 

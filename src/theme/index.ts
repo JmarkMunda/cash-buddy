@@ -3,6 +3,7 @@ import type { StorageManager } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { palette } from "./colors";
 import { LinearGradient } from "expo-linear-gradient";
+import typography from "./typography";
 
 export const config = {
   dependencies: {
@@ -31,4 +32,7 @@ export const colorModeManager: StorageManager = {
   },
 };
 
-export const theme = extendTheme({ colors: palette });
+export const theme = extendTheme({
+  colors: palette,
+  ...typography,
+});

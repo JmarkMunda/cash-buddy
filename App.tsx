@@ -1,6 +1,7 @@
+import "./wdyr";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
-import AppNavigator from "./src/screens/AppNavigator";
+import RootNavigator from "./src/navigators/RootNavigator";
 import Toast from "react-native-toast-message";
 import { NativeBaseProvider, Text } from "native-base";
 import { colorModeManager, config, theme } from "./src/theme";
@@ -41,7 +42,7 @@ export default function App() {
       <Provider store={store}>
         <NativeBaseProvider theme={theme} colorModeManager={colorModeManager} config={config}>
           <NavigationContainer onReady={onLayoutRootView}>
-            <AppNavigator />
+            <RootNavigator />
           </NavigationContainer>
           <Toast autoHide visibilityTime={2000} onPress={() => Toast.hide()} />
         </NativeBaseProvider>

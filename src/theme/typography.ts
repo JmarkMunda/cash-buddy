@@ -1,3 +1,5 @@
+import { getFontSize } from "../utils/utils";
+
 const typography = {
   letterSpacings: {
     xs: "-0.05em",
@@ -37,20 +39,20 @@ const typography = {
     mono: undefined,
   },
   fontSizes: {
-    "2xs": 10,
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 18,
-    xl: 20,
-    "2xl": 24,
-    "3xl": 30,
-    "4xl": 36,
-    "5xl": 48,
-    "6xl": 60,
-    "7xl": 72,
-    "8xl": 96,
-    "9xl": 128,
+    "2xs": getFontSize(10),
+    xs: getFontSize(12),
+    sm: getFontSize(14),
+    md: getFontSize(16),
+    lg: getFontSize(18),
+    xl: getFontSize(20),
+    "2xl": getFontSize(24),
+    "3xl": getFontSize(30),
+    "4xl": getFontSize(36),
+    "5xl": getFontSize(48),
+    "6xl": getFontSize(60),
+    "7xl": getFontSize(72),
+    "8xl": getFontSize(96),
+    "9xl": getFontSize(128),
   },
 };
 
