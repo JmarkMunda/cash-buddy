@@ -3,7 +3,7 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import RootNavigator from "./src/navigators/RootNavigator";
 import Toast from "react-native-toast-message";
-import { NativeBaseProvider, Text } from "native-base";
+import { NativeBaseProvider } from "native-base";
 import { colorModeManager, config, theme } from "./src/theme";
 import store from "./src/redux";
 import { Provider } from "react-redux";
@@ -37,15 +37,16 @@ export default function App() {
     }
   }, [appIsReady]);
 
-  if (appIsReady)
-    return (
-      <Provider store={store}>
-        <NativeBaseProvider theme={theme} colorModeManager={colorModeManager} config={config}>
-          <NavigationContainer onReady={onLayoutRootView}>
-            <RootNavigator />
-          </NavigationContainer>
-          <Toast autoHide visibilityTime={2000} onPress={() => Toast.hide()} />
-        </NativeBaseProvider>
-      </Provider>
-    );
+  if (!appIsReady) return null;
+
+  return (
+    <Provider store={store}>
+      <NativeBaseProvider theme={theme} colorModeManager={colorModeManager} config={config}>
+        <NavigationContainer onReady={onLayoutRootView}>
+          <RootNavigator />
+        </NavigationContainer>
+        <Toast autoHide visibilityTime={2000} onPress={() => Toast.hide()} />
+      </NativeBaseProvider>
+    </Provider>
+  );
 }

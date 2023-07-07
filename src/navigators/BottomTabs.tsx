@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ProfileScreen } from "../screens/ProfileScreen";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import SettingsScreen from "../screens/SettingsScreen";
+import HistoryScreen from "../screens/HistoryScreen";
 import HomeScreen from "../screens/HomeScreen";
 import { Icon, IconButton } from "native-base";
 
@@ -20,9 +20,9 @@ export const BottomTabs = () => {
       icon: "home-outline" as const,
     },
     {
-      name: "Settings",
-      component: SettingsScreen,
-      icon: "settings-outline" as const,
+      name: "History",
+      component: HistoryScreen,
+      icon: "receipt-outline" as const,
     },
   ];
 

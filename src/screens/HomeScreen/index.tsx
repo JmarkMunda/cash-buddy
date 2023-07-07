@@ -1,22 +1,21 @@
-import { Box, Button, Container, Heading, HStack } from "native-base";
-import Toast from "react-native-toast-message";
+import { useState } from "react";
+import { Box, Center, VStack } from "native-base";
 import { useAppSelector, useAppDispatch } from "../../redux";
-import { decrement, increment } from "../../redux/reducers/counter";
-import { loginRequest } from "../../redux/actions/auth";
-import { PrimaryButton } from "../../components/global/Buttons";
+import { PieChart } from "react-native-chart-kit";
+import { useWindowDimensions } from "react-native";
+import Toast from "react-native-toast-message";
 import Text from "../../components/global/Text";
-import { useState, useEffect } from "react";
 import Loading from "../../components/global/Loading";
+import RegularButton from "../../components/global/Buttons/RegularButton";
+import DropdownSelect from "../../components/global/DropdownSelect";
+import HistoryList from "../HistoryScreen/components/HistoryList";
+import { chartConfig, data, recentHistory } from "./lib/constants";
+import Card from "./components/Card";
 
 export default function HomeScreen() {
   const { value } = useAppSelector(({ counter }) => counter);
   const dispatch = useAppDispatch();
-
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    closeLoadingState();
-  }, [loading]);
+  const { width } = useWindowDimensions();
 
   const handleToast = () => {
     Toast.show({
@@ -25,28 +24,28 @@ export default function HomeScreen() {
     });
   };
 
-  const closeLoadingState = () => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 8000);
-  };
   return (
-    <Container>
-      <Box>
-        <Text>HomeScreen</Text>
-      </Box>
-      <Button onPress={() => dispatch(loginRequest(false))}>Log out</Button>
-      <Button onPress={handleToast}>Show toast</Button>
-      <Heading>Counter: {value}</Heading>
-      <HStack space={4}>
-        <Button onPress={() => dispatch(decrement())} variant="solid">
-          -
-        </Button>
-        <Button onPress={() => dispatch(increment())}>+</Button>
-        <PrimaryButton title="Show loading" onPress={() => setLoading(true)} />
-      </HStack>
+    <Box p={4} flex={1}>
+      {/* Card */}
+      <Card />
 
-      <Loading loading={loading} textContent="Please wait..." />
-    </Container>
+      {/* Chart */}
+      <Center>
+        <PieChart
+          data={data}
+          width={width}
+          height={200}
+          chartConfig={chartConfig}
+          accessor={"amount"}
+          backgroundColor={"transparent"}
+          paddingLeft={"5"}
+          absolute
+        />
+      </Center>
+
+      {/* Recent */}
+      <HistoryList data={recentHistory} />
+      {/* <Loading loading={loading} textContent="Please wait..." /> */}
+    </Box>
   );
 }
